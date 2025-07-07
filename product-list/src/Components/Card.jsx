@@ -28,7 +28,7 @@ function Card({ ring }) {
 
       <div className="product-info">
         <h3>{ring.name}</h3>
-        <p>{ring.weight} grams</p>
+        <p>{ring.priceUSD}$</p>
       </div>
 
       <form>
