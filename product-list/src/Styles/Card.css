@@ -15,6 +15,7 @@
 .product-card:hover {
   transform: translateY(-10px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
 }
 
 .product-info {
@@ -30,13 +31,15 @@
 }
 
 h3 {
-  font-size: 18px;
+  font-size: 15px;
   margin-bottom: 8px;
+  font-family: "Montserrat Medium";
 }
 
 p {
-  font-size: 16px;
+  font-size: 12px;
   margin-bottom: auto;
+  font-family: "Avenir Book";
 }
 
 form {
@@ -90,3 +93,7 @@ input[type="radio"][value="rose"] {
         cursor: pointer;
         margin-top: 5px;
     }
+.price{
+  font-family: "Montserrat Regular";
+  font-size: 15px;
+}

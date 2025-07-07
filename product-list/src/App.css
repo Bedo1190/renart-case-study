@@ -40,3 +40,31 @@
     transform: rotate(360deg);
   }
 }
+/* Avenir Book */
+@font-face {
+  font-family: 'Avenir Book';
+  src: url('../public/Fonts/avenir/Avenir-Book.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Montserrat Regular */
+@font-face {
+  font-family: 'Montserrat Regular';
+  src: url('../public/Fonts/montserat/Montserrat-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Montserrat Medium */
+@font-face {
+  font-family: 'Montserrat Medium';
+  src: url('../public/Fonts/montserat/Montserrat-Medium.otf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+.Pagetitle{
+  font-family: "Avenir Book";
+  font-size: 45px;
+}

@@ -28,7 +28,7 @@ function Card({ ring }) {
 
       <div className="product-info">
         <h3>{ring.name}</h3>
-        <p>{ring.priceUSD}$</p>
+        <p className="price">{ring.priceUSD}$</p>
       </div>
 
       <form>
@@ -48,7 +48,7 @@ function Card({ ring }) {
 
       <p className="selected-gold-text">{goldLabels[selectedGold]}</p>
 
-      <Stars />
+     <Stars defaultRating={ring.popularityScore} iconSize={14} />
     </div>
   );
 }
