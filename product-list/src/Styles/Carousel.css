@@ -12,12 +12,13 @@
 
 .carouselContainer {
   display: flex;
+  flex-flow:row ;
   gap: 1rem;
   overflow-x: auto;
   scroll-behavior: smooth;
   scrollbar-width: none;  /* Firefox */
   -ms-overflow-style: none;  /* IE 10+ */
-  padding: 0 1rem;
+  padding: 1rem 1rem;
   width: 100%;
 }
 

@@ -15,6 +15,17 @@ admin.initializeApp({
 
 const db = admin.firestore();
 
+app.get('/rings', async (req, res) => {
+  try {
+    const snapshot = await db.collection('engagementRings').get();
+    const rings = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    res.json(rings);
+  } catch (error) {
+    console.error('Error fetching rings:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });

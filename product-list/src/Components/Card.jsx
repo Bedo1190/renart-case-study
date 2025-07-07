@@ -1,64 +1,52 @@
+// src/components/Card.jsx
 import "../Styles/Card.css";
 import Stars from "./Stars";
 import { useState } from "react";
 
-function Card() {
-  const [selectedGold, setSelectedGold] = useState("Yellow Gold");
+function Card({ ring }) {
+  const [selectedGold, setSelectedGold] = useState("yellow");
 
   const handleChange = (e) => {
     setSelectedGold(e.target.value);
+  };
+
+  const goldOptions = ["yellow", "white", "rose"];
+  const goldLabels = {
+    yellow: "Yellow Gold",
+    white: "White Gold",
+    rose: "Rose Gold",
   };
 
   return (
     <div className="product-card">
       <div className="product-image">
         <img
-          src="https://placehold.co/300x300?text=Lamba"
-          alt="Modern Masa Lambası"
+          src={ring?.images?.[selectedGold] || ""}
+          alt={ring?.name || "Ring"}
         />
       </div>
 
       <div className="product-info">
-        <h3>Modern Masa Lambası</h3>
-        <p>749.99 TL</p>
+        <h3>{ring.name}</h3>
+        <p>{ring.weight} grams</p>
       </div>
 
       <form>
-        <div className="radio-wrapper">
-          <input
-            type="radio"
-            id="YellowGold"
-            name="gold"
-            value="Yellow Gold"
-            onChange={handleChange}
-            checked={selectedGold === "Yellow Gold"}
-          />
-        </div>
-
-        <div className="radio-wrapper">
-          <input
-            type="radio"
-            id="WhiteGold"
-            name="gold"
-            value="White Gold"
-            onChange={handleChange}
-            checked={selectedGold === "White Gold"}
-          />
-        </div>
-
-        <div className="radio-wrapper">
-          <input
-            type="radio"
-            id="RoseGold"
-            name="gold"
-            value="Rose Gold"
-            onChange={handleChange}
-            checked={selectedGold === "Rose Gold"}
-          />
-        </div>
+        {goldOptions.map((color) => (
+          <div className="radio-wrapper" key={color}>
+            <input
+              type="radio"
+              id={`${ring.id}-${color}`}              // benzersiz id
+              name={`gold-${ring.id}`}               // her karta özel name
+              value={color}
+              onChange={handleChange}
+              checked={selectedGold === color}
+            />
+          </div>
+        ))}
       </form>
 
-      <p className="selected-gold-text">{selectedGold}</p>
+      <p className="selected-gold-text">{goldLabels[selectedGold]}</p>
 
       <Stars />
     </div>
