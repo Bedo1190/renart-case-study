@@ -1,0 +1,18 @@
+.starsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.star {
+  cursor: pointer;
+  transition: all 0.1s linear;
+  font-size: 10em;
+}
+
+.star:hover {
+  transform: scale(1.1);
+}
+p{
+  margin: 0px 0px 0px 5px;
+}

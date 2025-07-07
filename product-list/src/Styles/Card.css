@@ -1,0 +1,93 @@
+.product-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  max-width: fit-content;
+}
+
+.product-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.product-image img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+p {
+  font-size: 16px;
+  margin-bottom: auto;
+}
+
+form {
+      display: flex;
+      justify-content: space-around;
+      font-family: sans-serif;
+      font-size: 1.2rem;
+      margin: 1rem 2rem 0 2rem;
+    }
+
+    input[type="radio"] {
+      appearance: none;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid #ccc;
+      cursor: pointer;
+      position: relative;
+      transition: 0.1s ease;
+
+    }
+
+        /* Colors */
+    input[id="YellowGold"] {
+      border-color: #E6CA97;
+      background-color: #E6CA97;
+    }
+
+    input[id="WhiteGold"] {
+      border-color: #D9D9D9;
+      background-color: #D9D9D9;
+
+    }
+
+    input[id="RoseGold"] {
+      border-color: #E1A4A9;
+      background-color: #E1A4A9;
+    }
+
+    /* Add gray ring when selected */
+    input[type="radio"]:checked {
+      outline: 1px solid gray;
+      outline-offset: 2px;
+    }
+    input[type="radio"]:hover{
+      outline: 1px solid gray;
+      outline-offset: 2px;
+    }
+
+    label {
+        display: block;
+        cursor: pointer;
+        margin-top: 5px;
+    }
