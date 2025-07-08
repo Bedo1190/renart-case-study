@@ -32,7 +32,6 @@ const getGoldPricePerGram = async () => {
     return pricePerGram;
   } catch (err) {
     console.error('Swissquote gold API failed:', err.message);
-    // fallback price per gram in USD if API call fails
     return 70.0;
   }
 };
@@ -41,13 +40,11 @@ app.get('/rings', async (req, res) => {
   try {
     const goldPricePerGram = await getGoldPricePerGram();
 
-    // Extract filters from query parameters
     const minPrice = parseFloat(req.query.minPrice);
     const maxPrice = parseFloat(req.query.maxPrice);
     const minScore = parseFloat(req.query.minScore);
     const maxScore = parseFloat(req.query.maxScore);
 
-    // Fetch all rings
     const snapshot = await db.collection('engagementRings').get();
 
     const rings = snapshot.docs.map(doc => {
@@ -55,7 +52,6 @@ app.get('/rings', async (req, res) => {
       const popularityScore = data.popularityScore || 0;
       const weight = data.weight || 0;
 
-      // Compute price
       const priceUSD = (popularityScore + 1) * weight * goldPricePerGram;
 
       return {
@@ -65,7 +61,6 @@ app.get('/rings', async (req, res) => {
       };
     });
 
-    // Apply filtering based on query parameters
     const filteredRings = rings.filter(ring => {
       const passesPrice =
         (isNaN(minPrice) || ring.priceUSD >= minPrice) &&

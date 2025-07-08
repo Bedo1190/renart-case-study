@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import "../Styles/Filtering.css";
 
-function Filtering() {
+function Filtering({ onApply }) {
   const [isOpen, setIsOpen] = useState(false);
   const [inputs, setInputs] = useState({
     pricemin: "",
@@ -14,8 +14,12 @@ function Filtering() {
 
   const toggleFilters = () => {
     if (hasChanged) {
-      // Apply logic can go here
-      console.log("Applying changes with filters:", inputs);
+      onApply({
+        minPrice: inputs.pricemin,
+        maxPrice: inputs.pricemax,
+        minScore: inputs.popmin,
+        maxScore: inputs.popmax,
+      });
       setHasChanged(false);
       setIsOpen(false);
     } else {
@@ -23,10 +27,7 @@ function Filtering() {
         const newState = !prev;
         if (!prev) {
           setTimeout(() => {
-            window.scrollBy({
-            top: 99999,
-            behavior: "smooth",
-            });
+            window.scrollBy({ top: 99999, behavior: "smooth" });
           }, 400);
         }
         return newState;
@@ -108,12 +109,34 @@ function Filtering() {
                 id="popmax"
                 name="popmax"
                 min="0"
-                placeholder="100"
+                placeholder="0"
                 value={inputs.popmax}
                 onChange={handleInputChange}
               />
             </div>
           </div>
+          <div className="reset-container">
+            <button
+                className="reset-button"
+                onClick={() => {
+                    setInputs({
+                    pricemin: "",
+                    pricemax: "",
+                    popmin: "",
+                    popmax: "",
+                    });
+                    setHasChanged(false);
+                    onApply({
+                    minPrice: "",
+                    maxPrice: "",
+                    minScore: "",
+                    maxScore: "",
+                    });
+                }}
+                >
+                Reset
+            </button>
+         </div>
         </div>
       </div>
     </div>

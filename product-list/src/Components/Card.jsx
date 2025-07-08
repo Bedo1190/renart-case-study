@@ -1,4 +1,3 @@
-// src/components/Card.jsx
 import "../Styles/Card.css";
 import Stars from "./Stars";
 import { useState } from "react";
@@ -36,8 +35,8 @@ function Card({ ring }) {
           <div className="radio-wrapper" key={color}>
             <input
               type="radio"
-              id={`${ring.id}-${color}`}              // benzersiz id
-              name={`gold-${ring.id}`}               // her karta özel name
+              id={`${ring.id}-${color}`}              
+              name={`gold-${ring.id}`}               
               value={color}
               onChange={handleChange}
               checked={selectedGold === color}

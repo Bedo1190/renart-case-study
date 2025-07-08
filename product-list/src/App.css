@@ -5,6 +5,9 @@
   align-items: center;
   flex-direction: column;
 }
+html{
+  scroll-behavior: smooth;
+}
 
 .App-logo {
   height: 40vmin;
@@ -40,7 +43,6 @@
     transform: rotate(360deg);
   }
 }
-/* Avenir Book */
 @font-face {
   font-family: 'Avenir Book';
   src: url('../public/Fonts/avenir/Avenir-Book.ttf') format('truetype');
@@ -48,7 +50,6 @@
   font-style: normal;
 }
 
-/* Montserrat Regular */
 @font-face {
   font-family: 'Montserrat Regular';
   src: url('../public/Fonts/montserat/Montserrat-Regular.ttf') format('truetype');
@@ -56,7 +57,6 @@
   font-style: normal;
 }
 
-/* Montserrat Medium */
 @font-face {
   font-family: 'Montserrat Medium';
   src: url('../public/Fonts/montserat/Montserrat-Medium.otf') format('truetype');

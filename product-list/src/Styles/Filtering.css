@@ -5,7 +5,6 @@
   --radius: 20px;
 }
 
-/* Layout container */
 .filter-wrapper {
   display: flex;
   flex-direction: column;
@@ -13,7 +12,6 @@
   margin-top: 1.5rem;
 }
 
-/* Toggle button */
 .filter-toggle-button {
   background-color: var(--bg);
   color: var(--text);
@@ -31,7 +29,6 @@
   background-color: #bfbfbf;
 }
 
-/* Expand/collapse animation */
 .filter-bar-container {
   overflow: hidden;
   height: 0;
@@ -44,12 +41,11 @@
 }
 
 .filter-bar-container.expanded {
-  height: 200px;
+  height: fit-content;
   opacity: 1;
   transform: scaleY(1);
 }
 
-/* The actual filter box */
 .filter-bar {
   background-color: var(--bg);
   border-radius: var(--radius);
@@ -59,9 +55,10 @@
   gap: 3rem;
   justify-content: space-between;
   width: fit-content;
+  height: fit-content;
+  margin-bottom: 2rem;
 }
 
-/* Each section inside the bar */
 .filter-section {
   display: flex;
   flex-direction: column;
@@ -77,14 +74,12 @@
   letter-spacing: 1px;
 }
 
-/* Label + input on one line */
 .field-pair {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-/* Label styling */
 .field-pair label {
   color: white;
   font-size: 0.8rem;
@@ -92,7 +87,6 @@
   white-space: nowrap;
 }
 
-/* Smaller input */
 .field-pair input[type="number"] {
   background-color: white;
   border: none;
@@ -107,4 +101,43 @@
 .field-pair input:focus {
   outline: none;
   box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+}
+
+.reset-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.reset-button {
+  padding: 0.6rem 1.5rem;
+  background-color: #bfbfbf;
+  border: none;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition:  0.3s ease;
+  height: fit-content;
+  color: white;
+}
+
+.reset-button:hover {
+  background-color: white;
+  color: black;
+}
+
+@media (max-width: 768px) {
+  .filter-bar {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .filter-section {
+    width: 100%;
+    max-width: 400px;
+  }
+  .reset-container {
+  margin-top: 0;
+}
 }
