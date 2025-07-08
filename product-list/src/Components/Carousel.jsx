@@ -11,7 +11,7 @@ function Carousel({ filters }) {
       if (filters.minScore) params.append("minScore", filters.minScore);
       if (filters.maxScore) params.append("maxScore", filters.maxScore);
 
-      const response = await fetch(`http://localhost:4000/rings?${params}`);
+      const response = await fetch(`/api/rings?${params}`);
       const data = await response.json();
       setRings(data);
     };
@@ -32,7 +32,7 @@ function Carousel({ filters }) {
   useEffect(() => {
     const fetchRings = async () => {
       try {
-        const response = await fetch("http://localhost:4000/rings"); 
+        const response = await fetch("/api/rings"); 
         if (!response.ok) throw new Error("Network response was not ok");
         const data = await response.json();
         setRings(data);

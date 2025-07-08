@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/static/css/main.e3930f3c.css",
+    "main.js": "/static/js/main.87d6a2df.js",
+    "static/js/453.df2ee516.chunk.js": "/static/js/453.df2ee516.chunk.js",
+    "static/media/Montserrat-Regular.ttf": "/static/media/Montserrat-Regular.3bc90003d4868fece872.ttf",
+    "static/media/Montserrat-Medium.otf": "/static/media/Montserrat-Medium.4b4a4b36283ebeb2cf89.otf",
+    "static/media/Avenir-Book.ttf": "/static/media/Avenir-Book.45721c895eddd5961b80.ttf",
+    "index.html": "/index.html",
+    "main.e3930f3c.css.map": "/static/css/main.e3930f3c.css.map",
+    "main.87d6a2df.js.map": "/static/js/main.87d6a2df.js.map",
+    "453.df2ee516.chunk.js.map": "/static/js/453.df2ee516.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e3930f3c.css",
+    "static/js/main.87d6a2df.js"
+  ]
+}
