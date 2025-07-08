@@ -41,22 +41,44 @@ app.get('/rings', async (req, res) => {
   try {
     const goldPricePerGram = await getGoldPricePerGram();
 
+    // Extract filters from query parameters
+    const minPrice = parseFloat(req.query.minPrice);
+    const maxPrice = parseFloat(req.query.maxPrice);
+    const minScore = parseFloat(req.query.minScore);
+    const maxScore = parseFloat(req.query.maxScore);
+
+    // Fetch all rings
     const snapshot = await db.collection('engagementRings').get();
+
     const rings = snapshot.docs.map(doc => {
       const data = doc.data();
       const popularityScore = data.popularityScore || 0;
       const weight = data.weight || 0;
 
+      // Compute price
       const priceUSD = (popularityScore + 1) * weight * goldPricePerGram;
 
       return {
         id: doc.id,
         ...data,
-        priceUSD: parseFloat(priceUSD.toFixed(2)), // rounded to 2 decimals
+        priceUSD: parseFloat(priceUSD.toFixed(2)),
       };
     });
 
-    res.json(rings);
+    // Apply filtering based on query parameters
+    const filteredRings = rings.filter(ring => {
+      const passesPrice =
+        (isNaN(minPrice) || ring.priceUSD >= minPrice) &&
+        (isNaN(maxPrice) || ring.priceUSD <= maxPrice);
+
+      const passesScore =
+        (isNaN(minScore) || ring.popularityScore >= minScore) &&
+        (isNaN(maxScore) || ring.popularityScore <= maxScore);
+
+      return passesPrice && passesScore;
+    });
+
+    res.json(filteredRings);
   } catch (error) {
     console.error('Error fetching rings:', error);
     res.status(500).json({ error: 'Internal Server Error' });

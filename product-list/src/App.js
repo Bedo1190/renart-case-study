@@ -1,5 +1,5 @@
 import Carousel from './Components/Carousel';
-/* import Filtering from './Components/Filtering'; */
+import Filtering from './Components/Filtering'; 
 import './App.css';
 
 function App() {
@@ -7,7 +7,7 @@ function App() {
     <div className="App">
       <h1 className='Pagetitle'>Product List</h1>
       <Carousel/>
-      {/* <Filtering/> */}
+      <Filtering/> 
     </div>
   );
 }

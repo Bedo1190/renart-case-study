@@ -1,47 +1,123 @@
-import "../Styles/Filtering.css"
-import { useState } from "react";
+import { useState, useRef } from "react";
+import "../Styles/Filtering.css";
 
 function Filtering() {
-    const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [inputs, setInputs] = useState({
+    pricemin: "",
+    pricemax: "",
+    popmin: "",
+    popmax: "",
+  });
+  const [hasChanged, setHasChanged] = useState(false);
+  const filterRef = useRef(null);
 
-    const togglePanel = () => {
-        setIsOpen(!isOpen);
+  const toggleFilters = () => {
+    if (hasChanged) {
+      // Apply logic can go here
+      console.log("Applying changes with filters:", inputs);
+      setHasChanged(false);
+      setIsOpen(false);
+    } else {
+      setIsOpen(prev => {
+        const newState = !prev;
+        if (!prev) {
+          setTimeout(() => {
+            window.scrollBy({
+            top: 99999,
+            behavior: "smooth",
+            });
+          }, 400);
+        }
+        return newState;
+      });
+    }
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+
+    const updatedInputs = {
+      ...inputs,
+      [name]: value,
     };
 
-    return (
-        <div className="filter-wrapper" style={{ color: "white" }}>
-            <button 
-                onClick={togglePanel} 
-                className="filter-toggle" 
-            >
-                Filter{" "}
-                <i className={`fa-solid ${isOpen ? "fa-chevron-up" : "fa-chevron-down"}`}></i>
-            </button>
+    setInputs(updatedInputs);
 
-            {isOpen && (
-                <div 
-                    className="panel" 
-                    style={{ 
-                        marginTop: "1rem", 
-                        backgroundColor: "#D9D9D9", 
-                        padding: "1rem", 
-                        borderRadius: "8px"
-                    }}
-                >
-                    <div className="panel-item" style={{ marginBottom: "1rem" }}>
-                        <label htmlFor="pricerange" style={{ marginRight: "0.5rem" }}>
-                            <i className="fa-solid fa-tags"></i>
-                        </label>
-                        <input type="range" name="pricerange" id="pricerange" />
-                    </div>
-                    <div className="panel-item">
-                        <button type="button" style={{ marginRight: "0.5rem" }}>Popularity increasing</button>
-                        <button type="button">Popularity decreasing</button>
-                    </div>
-                </div>
-            )}
+    const isAnyNonZero = Object.values(updatedInputs).some(val => parseFloat(val) > 0);
+    setHasChanged(isAnyNonZero);
+  };
+
+  return (
+    <div className="filter-wrapper">
+      <button className="filter-toggle-button" onClick={toggleFilters}>
+        {hasChanged ? "Apply Changes" : isOpen ? "Hide Filters" : "Show Filters"}
+      </button>
+
+      <div
+        ref={filterRef}
+        className={`filter-bar-container ${isOpen ? "expanded" : ""}`}
+      >
+        <div className="filter-bar">
+          <div className="filter-section">
+            <h2>Price</h2>
+            <div className="field-pair">
+              <label htmlFor="pricemin">Min</label>
+              <input
+                type="number"
+                id="pricemin"
+                name="pricemin"
+                min="0"
+                placeholder="0.00$"
+                value={inputs.pricemin}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="field-pair">
+              <label htmlFor="pricemax">Max</label>
+              <input
+                type="number"
+                id="pricemax"
+                name="pricemax"
+                min="0"
+                placeholder="0.00$"
+                value={inputs.pricemax}
+                onChange={handleInputChange}
+              />
+            </div>
+          </div>
+
+          <div className="filter-section">
+            <h2>Popularity</h2>
+            <div className="field-pair">
+              <label htmlFor="popmin">Min</label>
+              <input
+                type="number"
+                id="popmin"
+                name="popmin"
+                min="0"
+                placeholder="0"
+                value={inputs.popmin}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="field-pair">
+              <label htmlFor="popmax">Max</label>
+              <input
+                type="number"
+                id="popmax"
+                name="popmax"
+                min="0"
+                placeholder="100"
+                value={inputs.popmax}
+                onChange={handleInputChange}
+              />
+            </div>
+          </div>
         </div>
-    );
+      </div>
+    </div>
+  );
 }
 
 export default Filtering;

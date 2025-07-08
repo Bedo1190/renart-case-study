@@ -1,35 +1,110 @@
-.panel {
-  background-color: #D9D9D9;
-  color: white;
-  padding: 1rem 2rem;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
-  max-width: 400px;
-  margin: 1rem auto;
+:root {
+  --bg: #d9d9d9;
+  --text: #ffffff;
+  --shadow: rgba(0, 0, 0, 0.1);
+  --radius: 20px;
 }
 
-.panel-item {
+/* Layout container */
+.filter-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  margin-top: 1.5rem;
 }
 
-input[type="range"] {
-  width: 100%;
-  margin-top: 0.5rem;
+/* Toggle button */
+.filter-toggle-button {
+  background-color: var(--bg);
+  color: var(--text);
+  border: none;
+  padding: 0.6rem 1.4rem;
+  border-radius: var(--radius);
   cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background-color 0.3s ease;
+  margin-bottom: 1em;
 }
-.filter-toggle{
-    background-color: #D9D9D9; 
-    border: none; 
-    border-radius:20%;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    display: flex; 
-    align-items: center;
-    gap: 0.5rem;
-    color: white;
+
+.filter-toggle-button:hover {
+  background-color: #bfbfbf;
+}
+
+/* Expand/collapse animation */
+.filter-bar-container {
+  overflow: hidden;
+  height: 0;
+  opacity: 0;
+  transform: scaleY(0.95);
+  transform-origin: top;
+  transition: height 0.5s ease, opacity 0.5s ease, transform 0.5s ease;
+  width: 100%;
+  max-width: 800px;
+}
+
+.filter-bar-container.expanded {
+  height: 200px;
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+/* The actual filter box */
+.filter-bar {
+  background-color: var(--bg);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 20px var(--shadow);
+  padding: 2rem;
+  display: flex;
+  gap: 3rem;
+  justify-content: space-between;
+  width: fit-content;
+}
+
+/* Each section inside the bar */
+.filter-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.filter-section h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Label + input on one line */
+.field-pair {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Label styling */
+.field-pair label {
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Smaller input */
+.field-pair input[type="number"] {
+  background-color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.85rem;
+  width: 80px;
+  box-shadow: 0 1px 3px var(--shadow);
+  transition: box-shadow 0.2s ease;
+}
+
+.field-pair input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
 }
