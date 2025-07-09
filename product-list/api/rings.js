@@ -1,7 +1,7 @@
 import admin from 'firebase-admin';
 import cors from 'cors';
 import axios from 'axios';
-
+console.log("Handler invoked on serverless");
 const corsMiddleware = cors({ origin: true });
 
 const serviceAccount = {
