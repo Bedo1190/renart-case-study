@@ -1,6 +1,6 @@
 import admin from 'firebase-admin';
 import cors from 'cors';
-import axios from 'axios';
+import axios from 'axios/dist/node/axios.cjs';
 console.log("Handler invoked on serverless");
 const corsMiddleware = cors({ origin: true });
 
